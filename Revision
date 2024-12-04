@@ -1,0 +1,49 @@
+## Bandit Level 0
+## Level Goal
+The goal of this level is for you to log into the game using SSH. The host to which you need to connect is bandit.labs.overthewire.org, on port 2220. The username is bandit0 and the password is bandit0. Once logged in, go to the Level 1 page to find out how to beat Level 1.
+```
+ssh bandit0@bandit.labs.overthewire.org -p 2220
+```
+
+## Bandit Level 0 → Level 1
+## Level Goal
+The password for the next level is stored in a file called readme located in the home directory. Use this password to log into bandit1 using SSH. Whenever you find a password for a level, use SSH (on port 2220) to log into that level and continue the game.
+```
+ls
+```
+```
+cat readme
+```
+
+
+Bandit Level 1 → Level 2
+Level Goal
+The password for the next level is stored in a file called — located in the home directory
+
+learnings
+ls -a
+
+Lists all files, including hidden ones.
+Output: -, ., .., and shell config files.
+cat < -
+
+Reads input from the file named - using redirection.
+Output: 263JGJPfgU6LtdEvgfWU1XP5yac29mFx.
+cat ./-
+
+Explicitly refers to the file - using ./.
+Output: Same as above.
+Key Points
+Special filenames: Use ./ to handle files like - that resemble options.
+
+Redirection (<): Reads file input for commands.
+
+Hidden files: Use ls -a to view files starting with ..
+
+Both cat < - and cat ./- display the same content but differ in handling.
+
+cat < -: Uses input redirection; - is treated as a file to read input from.
+
+cat ./-: Explicitly specifies - as the filename in the current directory using ./.
+
+Both show the same content, but the first relies on redirection, while the second directly accesses the file.
