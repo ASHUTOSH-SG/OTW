@@ -227,3 +227,38 @@ The password for the next level is stored in `data.txt` and is the only line tha
 ## Key Notes:
 - The `-u` option in `uniq` is used to show only lines that occur exactly once.
 ```
+
+
+## Bandit Level 9 → Level 10
+
+Level Goal
+The password for the next level is stored in the file data.txt in one of the few human-readable strings, preceded by several ‘=’ characters.
+
+1. **Connect to Bandit Server**:
+   ```bash
+   ssh bandit9@bandit.labs.overthewire.org -p 2220
+   ```
+   Use the password obtained from Level 8.
+
+2. **Extract Human-Readable Strings**:
+   Use the `strings` command to display readable text from a binary file. Combine it with `grep` to search for strings containing `=` characters:
+   ```bash
+   strings data.txt | grep '===='
+   ```
+   Example output:
+   ```
+   }========== the
+   3JprD========== passwordi
+   ~fDV3========== is
+   D9========== FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey
+   ```
+
+3. **Identify the Password**:
+   The password is the string immediately following the last `=` sequence:
+   ```
+   FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey
+   ```
+
+4. **Log in to the Next Level**:
+   ```bash
+   ssh bandit10@bandit.labs.overthewire.org -p 2220
